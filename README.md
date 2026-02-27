@@ -4,26 +4,42 @@
 using namespace std;
 
 int main() {
-	srand(time(0));
-// variables for the number inputs and outputs
-	int playerguess;
-	int randomnubmer = rand() % 101;
-	int guessCount = 0; // Counts the guesses
+    srand(time(0));
 
-// input for the player at the start of the game
-	cout << "Enter your guess\n";
-	cin >> playerguess;
-	guessCount++;     // Counts the first guess
+    int randomNum = rand() % 101;
+    double guess = 0;
+    int guessCount = 0;
 
-	// code for the loop of the game, It'lrepeat until the player guesses the correctly
-	while (playerguess != randomnubmer) {
-		cout << "incorrect try again\n";
-		cin >> playerguess;
-		guessCount++; //Counting each guess
-	}
-	// When the player guesses the correct nubmer this message appears.
-	cout << "Correct!!!!\n";
-	cout << " It took you " << guessCount << " guesses.\n" ;
+    while (true) {
+        cout << "Guess the random number: ";
+        cin >> guess;
 
-	return 0;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Invalid input. Please enter a number between 0 and 100.\n";
+            continue; 
+        }
+
+        guessCount++;
+
+        if (guess == randomNum) {
+            cout << "Your answer was correct ";
+            cout << "in " << guessCount << " guesses.\n";
+            break;
+        } else {
+            cout << "Your answer was wrong. ";
+
+            if (guess < randomNum) {
+                cout << "Too low!\n";
+            } else {
+                cout << "Too high!\n";
+            }
+        }
+    }
+	
+    return 0;
+}
+
+    return 0;
 }
